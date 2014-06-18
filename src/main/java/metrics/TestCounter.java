@@ -14,48 +14,48 @@ import static com.codahale.metrics.MetricRegistry.*;
  */
 public class TestCounter {
 
-	/**
-	 * 实例化一个registry，最核心的一个模块，相当于一个应用程序的metrics系统的容器，维护一个Map
-	 */
-	private static final MetricRegistry metrics = new MetricRegistry();
+    /**
+     * 实例化一个registry，最核心的一个模块，相当于一个应用程序的metrics系统的容器，维护一个Map
+     */
+    private static final MetricRegistry metrics = new MetricRegistry();
 
-	/**
-	 * 在控制台上打印输出
-	 */
-	private static ConsoleReporter reporter = ConsoleReporter.forRegistry(
-			metrics).build();
+    /**
+     * 在控制台上打印输出
+     */
+    private static ConsoleReporter reporter = ConsoleReporter.forRegistry(
+            metrics).build();
 
-	/**
-	 * 实例化一个counter,同样可以通过如下方式进行实例化再注册进去 pendingJobs = new Counter();
-	 * metrics.register(MetricRegistry.name(TestCounter.class, "pending-jobs"),
-	 * pendingJobs);
-	 */
-	private static Counter pendingJobs = metrics.counter(name(
-			TestCounter.class, "pedding-jobs"));
-	// private static Counter pendingJobs =
-	// metrics.counter(MetricRegistry.name(TestCounter.class, "pedding-jobs"));
+    /**
+     * 实例化一个counter,同样可以通过如下方式进行实例化再注册进去 pendingJobs = new Counter();
+     * metrics.register(MetricRegistry.name(TestCounter.class, "pending-jobs"),
+     * pendingJobs);
+     */
+    private static Counter pendingJobs = metrics.counter(name(
+            TestCounter.class, "pedding-jobs"));
+    // private static Counter pendingJobs =
+    // metrics.counter(MetricRegistry.name(TestCounter.class, "pedding-jobs"));
 
-	private static Queue<String> queue = new LinkedList<String>();
+    private static Queue<String> queue = new LinkedList<String>();
 
-	public static void add(String str) {
-		pendingJobs.inc();
-		queue.offer(str);
-	}
+    public static void add(String str) {
+        pendingJobs.inc();
+        queue.offer(str);
+    }
 
-	public String take() {
-		pendingJobs.dec();
-		return queue.poll();
-	}
+    public String take() {
+        pendingJobs.dec();
+        return queue.poll();
+    }
 
-	public static void main(String[] args) throws InterruptedException {
-		reporter.start(3, TimeUnit.SECONDS);
-		for (int i = 0; i < 20; i++) {
-			System.out.println("Before adding " + i);
-			add("1");
-			System.out.println("After addding " + i);
-			Thread.sleep(1000);
-		}
-	}
+    public static void main(String[] args) throws InterruptedException {
+        reporter.start(3, TimeUnit.SECONDS);
+        for (int i = 0; i < 20; i++) {
+            System.out.println("Before adding " + i);
+            add("1");
+            System.out.println("After addding " + i);
+            Thread.sleep(1000);
+        }
+    }
 }
 
 /*
