@@ -8,9 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 import static com.codahale.metrics.MetricRegistry.*;
 
-/**
- * User: hzwangxx Date: 14-2-17 Time: 18:34 测试Meters
- */
 public class TestMeters {
     /**
      * 实例化一个registry，最核心的一个模块，相当于一个应用程序的metrics系统的容器，维护一个Map
@@ -40,36 +37,4 @@ public class TestMeters {
             Thread.sleep(1000);
         }
     }
-
 }
-
-/*
- * 14-2-17 18:43:08
- * ===============================================================
- * 
- * -- Meters
- * ----------------------------------------------------------------------
- * com.netease.test.metrics.TestMeters.request count = 30 mean rate = 9.95
- * events/second 1-minute rate = 0.00 events/second 5-minute rate = 0.00
- * events/second 15-minute rate = 0.00 events/second
- * 
- * 
- * 14-2-17 18:43:11
- * ===============================================================
- * 
- * -- Meters
- * ----------------------------------------------------------------------
- * com.netease.test.metrics.TestMeters.request count = 60 mean rate = 9.99
- * events/second 1-minute rate = 10.00 events/second 5-minute rate = 10.00
- * events/second 15-minute rate = 10.00 events/second
- * 
- * 
- * 14-2-17 18:43:14
- * ===============================================================
- * 
- * -- Meters
- * ----------------------------------------------------------------------
- * com.netease.test.metrics.TestMeters.request count = 90 mean rate = 9.99
- * events/second 1-minute rate = 10.00 events/second 5-minute rate = 10.00
- * events/second 15-minute rate = 10.00 events/second
- */
