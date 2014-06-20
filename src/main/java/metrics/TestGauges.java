@@ -12,7 +12,6 @@ public class TestGauges {
 	 * 实例化一个registry，最核心的一个模块，相当于一个应用程序的metrics系统的容器，维护一个Map
 	 */
 	private static final MetricRegistry metrics = new MetricRegistry();
-
 	private static List<String> list = new LinkedList<String>();
 
 	/**
@@ -35,10 +34,6 @@ public class TestGauges {
 		metrics.register(
 				MetricRegistry.name(TestGauges.class, "pending-job", "size"),
 				gauge);
-
-		// 测试JMX
-		//JmxReporter jmxReporter = JmxReporter.forRegistry(metrics).build();
-		//jmxReporter.start();
 
 		// 模拟数据
 		for (int i = 0; i < 20; i++) {
