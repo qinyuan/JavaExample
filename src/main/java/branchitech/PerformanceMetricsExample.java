@@ -3,6 +3,13 @@ package branchitech;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import branchitech.metrics.ExceptionBean;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.Metric;
+import com.codahale.metrics.Timer;
+import javafx.application.Application;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.branchitech.metrics.PerformanceMetrics;
@@ -11,45 +18,75 @@ import branchitech.metrics.MetricsBean;
 
 public class PerformanceMetricsExample {
 
+    private static void print(Object obj) {
+        System.out.print(obj.toString());
+    }
+
+    private static void println(Object obj) {
+        System.out.println(obj.toString());
+    }
+
+    private static void printMetric(Metric value) {
+        if (value instanceof Counter) {
+            println(((Counter) value).getCount());
+        } else if (value instanceof Meter) {
+            print(((Meter) value).getMeanRate() + " ");
+            println(((Meter) value).getCount());
+        } else if (value instanceof Timer) {
+            print(((Timer) value).getCount() + " ");
+            println(((Timer) value).getMeanRate());
+        } else {
+            println(value);
+        }
+    }
+
+    public static void printPerformanceMetrics() {
+        Map<String, PerformanceMetrics> metrics = PerformanceMetrics.metrics();
+        System.out.println("metrics size: " + metrics.size() + "\n");
+
+        for (Entry<String, PerformanceMetrics> entry : metrics.entrySet()) {
+            PerformanceMetrics pm = entry.getValue();
+            println("name: " + pm.getName());
+            println("count: " + pm.getCount());
+            println("allCount: " + pm.getAllCount());
+
+            for (Entry<String, Metric> metryEntry : pm.getMetrics().entrySet()) {
+                print(metryEntry.getKey() + " ");
+                printMetric(metryEntry.getValue());
+            }
+
+            println("");
+        }
+    }
+
+    private static void createMetricsBean(ApplicationContext ctx, String name) {
+        MetricsBean bean = ctx.getBean(name, MetricsBean.class);
+        bean.performanceMetrics();
+        bean.createByDefault();
+        bean.methodFromAbstractClass();
+        bean.methodByAbstractClass();
+        bean.methodFromInterface();
+    }
+
+    private static void createExceptionBean(ApplicationContext ctx, String name) {
+        ExceptionBean bean = ctx.getBean(name, ExceptionBean.class);
+        bean.performanceMetrics();
+        bean.createByDefault();
+        bean.methodFromAbstractClass();
+        bean.methodByAbstractClass();
+        bean.methodFromInterface();
+    }
+
     public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
                 "bean.xml");
-        MetricsBean metricsBean1, metricsBean2, metricsBean3;
-        metricsBean1 = ctx.getBean("metricsBean1", MetricsBean.class);
-        metricsBean2 = ctx.getBean("metricsBean2", MetricsBean.class);
-        metricsBean3 = ctx.getBean("metricsBean3", MetricsBean.class);
 
-        metricsBean1.performanceMetrics();
-        metricsBean2.performanceMetrics();
-        metricsBean3.performanceMetrics();
+        createMetricsBean(ctx, "metricsBean1");
+        createMetricsBean(ctx, "metricsBean2");
+        createMetricsBean(ctx, "metricsBean3");
+        //createExceptionBean(ctx, "exceptionBean1");
 
-        metricsBean1.createByDefault();
-        metricsBean2.createByDefault();
-        metricsBean3.createByDefault();
-
-        metricsBean1.methodByAbstractClass();
-        metricsBean2.methodByAbstractClass();
-        metricsBean3.methodByAbstractClass();
-
-        metricsBean1.methodFromAbstractClass();
-        metricsBean2.methodFromAbstractClass();
-        metricsBean3.methodFromAbstractClass();
-
-        metricsBean1.methodFromInterface();
-        metricsBean2.methodFromInterface();
-        metricsBean3.methodFromInterface();
-        
-        Map<String, PerformanceMetrics> metrics = PerformanceMetrics.metrics();
-        System.out.println("metrics size: " + metrics.size() + "\n");
-        
-        for(Entry<String, PerformanceMetrics> entry:metrics.entrySet()){
-            PerformanceMetrics pm=entry.getValue();
-            System.out.println("getName(): "+pm.getName());
-            System.out.println(pm.getCount());
-            System.out.println(pm.getAllCount());
-            System.out.println(pm.getMetrics().keySet());
-            System.out.println();
-        }
+        printPerformanceMetrics();
         ctx.close();
     }
 }
