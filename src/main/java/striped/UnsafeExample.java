@@ -1,12 +1,11 @@
 package striped;
 
-/**
- * Created by qinyuan on 14-6-24.
- */
-@SuppressWarnings("all")
+/*
+import sun.misc.Unsafe;
+
 public class UnsafeExample {
 
-    private static final sun.misc.Unsafe UNSAFE;
+    private static final Unsafe UNSAFE;
     private static final long valueOffset;
     private int value = 10;
 
@@ -62,3 +61,4 @@ public class UnsafeExample {
         new UnsafeExample().test();
     }
 }
+*/

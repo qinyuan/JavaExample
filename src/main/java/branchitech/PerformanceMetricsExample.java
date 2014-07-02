@@ -4,11 +4,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import branchitech.metrics.ExceptionBean;
-import com.codahale.metrics.Counter;
-import com.codahale.metrics.Meter;
-import com.codahale.metrics.Metric;
-import com.codahale.metrics.Timer;
-import javafx.application.Application;
+import branchitech.metrics.SimpleBean;
+import com.codahale.metrics.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -29,12 +26,13 @@ public class PerformanceMetricsExample {
     private static void printMetric(Metric value) {
         if (value instanceof Counter) {
             println(((Counter) value).getCount());
-        } else if (value instanceof Meter) {
-            print(((Meter) value).getMeanRate() + " ");
-            println(((Meter) value).getCount());
+        } else if (value instanceof TimeMeter) {
+            print((System.currentTimeMillis() - ((TimeMeter) value).getLastMarkTimestamp()) + " ");
+            print(((TimeMeter) value).getMeanRate() + " ");
+            println(((TimeMeter) value).getCount());
         } else if (value instanceof Timer) {
-            print(((Timer) value).getCount() + " ");
-            println(((Timer) value).getMeanRate());
+            print(((Timer) value).getMeanRate() + " ");
+            println(((Timer) value).getCount());
         } else {
             println(value);
         }
@@ -69,22 +67,40 @@ public class PerformanceMetricsExample {
     }
 
     private static void createExceptionBean(ApplicationContext ctx, String name) {
-        ExceptionBean bean = ctx.getBean(name, ExceptionBean.class);
-        bean.performanceMetrics();
-        bean.createByDefault();
-        bean.methodFromAbstractClass();
-        bean.methodByAbstractClass();
-        bean.methodFromInterface();
+        try {
+            ExceptionBean bean = ctx.getBean(name, ExceptionBean.class);
+            bean.performanceMetrics();
+            bean.createByDefault();
+            bean.methodFromAbstractClass();
+            bean.methodByAbstractClass();
+            bean.methodFromInterface();
+        } catch (Exception e) {
+            println("Exception thrown");
+        }
+    }
+
+    private static void createSimpleBean(ApplicationContext ctx, String name) {
+        try {
+            SimpleBean bean = ctx.getBean(name, SimpleBean.class);
+            bean.sqlExceptionMetric();
+            bean.ioExceptionMetric();
+            bean.normalMetric();
+        } catch (Exception e) {
+            println("Exception thrown");
+        }
     }
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
                 "bean.xml");
 
+        /*
         createMetricsBean(ctx, "metricsBean1");
         createMetricsBean(ctx, "metricsBean2");
         createMetricsBean(ctx, "metricsBean3");
-        //createExceptionBean(ctx, "exceptionBean1");
+        createExceptionBean(ctx, "exceptionBean1");
+        */
+        createSimpleBean(ctx, "simpleBean1");
 
         printPerformanceMetrics();
         ctx.close();
