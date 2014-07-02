@@ -3,6 +3,7 @@ package metrics;
 import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.Histogram;
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Snapshot;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,5 +22,6 @@ public class TestHistograms {
 			his.update(i);
 			Thread.sleep(1000);
 		}
+        Snapshot sn=his.getSnapshot();
 	}
 }

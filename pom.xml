@@ -8,6 +8,7 @@
 
 	<properties>
 		<spring.version>3.2.4.RELEASE</spring.version>
+        <vertx.version>2.1M2</vertx.version>
 	</properties>
 
 	<dependencies>
@@ -66,6 +67,21 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-platform</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-hazelcast</artifactId>
+            <version>${vertx.version}</version>
         </dependency>
 	</dependencies>
 </project>

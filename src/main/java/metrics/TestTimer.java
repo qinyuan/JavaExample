@@ -3,7 +3,6 @@ package metrics;
 import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class TestTimer {
@@ -28,10 +27,8 @@ public class TestTimer {
 
 	public static void main(String[] args) throws InterruptedException {
 		reporter.start(3, TimeUnit.SECONDS);
-		Random random = new Random();
-		for (int i = 0; i < 60; i++) {
-			//handleRequest(random.nextInt(1000));
-			handleRequest(500);
+		for (int i = 0; i < 20; i++) {
+			handleRequest(200);
 		}
 	}
 }
