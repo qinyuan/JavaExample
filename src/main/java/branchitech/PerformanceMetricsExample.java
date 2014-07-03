@@ -80,13 +80,19 @@ public class PerformanceMetricsExample {
     }
 
     private static void createSimpleBean(ApplicationContext ctx, String name) {
-        try {
-            SimpleBean bean = ctx.getBean(name, SimpleBean.class);
-            bean.sqlExceptionMetric();
-            bean.ioExceptionMetric();
+        SimpleBean bean = ctx.getBean(name, SimpleBean.class);
+        for (int i = 0; i < 10; i++) {
+            try {
+                bean.sqlExceptionMetric();
+            } catch (Exception e) {
+                println("SQLException thrown");
+            }
+            try {
+                bean.ioExceptionMetric();
+            } catch (Exception e) {
+                println("IOException thrown");
+            }
             bean.normalMetric();
-        } catch (Exception e) {
-            println("Exception thrown");
         }
     }
 
