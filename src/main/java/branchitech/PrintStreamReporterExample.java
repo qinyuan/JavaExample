@@ -21,6 +21,14 @@ public class PrintStreamReporterExample {
 
     private static void createMetrics() {
         TimeMeter meter = new TimeMeter();
+        for (int i = 0; i < 50; i++) {
+            meter.mark();
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         registry.register("testMeter", meter);
     }
 
