@@ -39,12 +39,12 @@ public class GangliaReporterExample {
         GangliaReporter reporter = getReporter();
         int i = 0;
         while (true) {
-            if (++i == 6) {
-                timeMeter.mark();
+            if (++i == 12) {
+                timeMeter.mark(); // throws Exception every 3 minute
                 i = 0;
             }
-            reporter.report();
-            Thread.sleep(5000);
+            reporter.report(); // report every 15 seconds
+            Thread.sleep(15000);
         }
     }
 }

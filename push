@@ -5,5 +5,5 @@ for catch_file in `find -name '*~'`; do
 done
 git add .
 git commit -a -m 'update'
-git push origin
+git push origin master
 
