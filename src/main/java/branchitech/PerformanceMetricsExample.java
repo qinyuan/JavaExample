@@ -30,7 +30,7 @@ public class PerformanceMetricsExample {
             println(" getCount():" + counter.getCount());
         } else if (value instanceof TimeMeter) {
             TimeMeter timeMeter = (TimeMeter) value;
-            print(" getLastMarkTimestamp():" + timeMeter.getLastMarkTimestamp() + ";");
+            print(" getLastMarkTimestamp():" + timeMeter.getLastTimestamp() + ";");
             print(" getMeanRate():" + timeMeter.getMeanRate() + ";");
             println(" getCount():" + timeMeter.getCount());
         } else if (value instanceof Timer) {
