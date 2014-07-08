@@ -3,18 +3,26 @@ package selfdeftag;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestMain {
-	public static void main(String[] args) {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				"test.xml");
-		TestBean test = context.getBean("test1", TestBean.class);
-		System.out.println("test.getId(): " + test.getId());
-		System.out.println("test.getName(): " + test.getName());
-		
-		test = context.getBean("test2", TestBean.class);
-		System.out.println("test.getId(): " + test.getId());
-		System.out.println("test.getName(): " + test.getName());
-		
-		System.out.println(context.getBean("test3"));
-		context.close();
-	}
+    private static void printBean(ITestBean bean, String title) {
+        System.out.println(title + ":");
+        System.out.print(bean.getClass() + " ");
+        System.out.print("getId(): " + bean.getId() + " ");
+        System.out.print("getName(): " + bean.getName() + " ");
+        System.out.println("\n");
+    }
+
+    public static void main(String[] args) {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+                "test.xml");
+        ITestBean test = context.getBean("test1", ITestBean.class);
+        printBean(test, "test1");
+
+        test = context.getBean("test2", ITestBean.class);
+        printBean(test, "test2");
+
+        test = context.getBean("test3", ITestBean.class);
+        printBean(test, "test3");
+
+        context.close();
+    }
 }

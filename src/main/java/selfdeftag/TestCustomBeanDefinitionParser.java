@@ -11,9 +11,18 @@ public class TestCustomBeanDefinitionParser implements BeanDefinitionParser {
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
 		String id = element.getAttribute("id");
 		String name = element.getAttribute("name");
+        String type = element.getAttribute("class");
 
 		RootBeanDefinition beanDefinition = new RootBeanDefinition();
-		beanDefinition.setBeanClass(TestBean.class);
+        if(type == null || type.equals("")) {
+            beanDefinition.setBeanClass(TestBean.class);
+        } else {
+            try {
+                beanDefinition.setBeanClass(Class.forName(type));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
 		beanDefinition.getPropertyValues().addPropertyValue("name", name);
 		parserContext.getRegistry().registerBeanDefinition(id, beanDefinition);
 

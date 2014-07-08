@@ -1,6 +1,6 @@
 package selfdeftag;
 
-public class TestBean2 {
+public class TestBean2 implements ITestBean{
 
 	private int id;
 	private String name;
