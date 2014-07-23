@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metrics-filter xmlns="metrics-filter.xsd"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="metrics-filter.xsd
+                                metrics-filter.xsd">
+
+    <statistic>
+        <include>
+            <start-with>test</start-with>
+            <start-with>me</start-with>
+        </include>
+        <exclude>
+            <start-with>goto</start-with>
+            <start-with>next</start-with>
+        </exclude>
+    </statistic>
+    <stats>
+        <include>
+            <start-with>test</start-with>
+            <start-with>me</start-with>
+        </include>
+        <exclude>
+            <start-with>goto</start-with>
+            <start-with>next</start-with>
+        </exclude>
+    </stats>
+
+</metrics-filter>
