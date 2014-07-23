@@ -1,4 +1,4 @@
-package selfdeftag;
+package spring.selfdeftag;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

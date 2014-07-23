@@ -1,4 +1,4 @@
-package selfdeftag;
+package spring.selfdeftag;
 
 public class TestBean2 implements ITestBean{
 

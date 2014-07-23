@@ -1,4 +1,4 @@
-package selfdeftag;
+package spring.selfdeftag;
 
 /**
  * Created by qinyuan on 14-7-8.

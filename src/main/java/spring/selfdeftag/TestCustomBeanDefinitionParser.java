@@ -1,4 +1,4 @@
-package selfdeftag;
+package spring.selfdeftag;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.RootBeanDefinition;
