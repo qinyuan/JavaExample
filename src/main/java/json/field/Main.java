@@ -10,6 +10,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         Parent sub = new Sub();
-        System.out.println(mapper.writeValueAsString(new PropertyBean(sub)));
+        PropertyBean bean = new PropertyBean(sub);
+        bean.setField(sub);
+        System.out.println(mapper.writeValueAsString(bean));
     }
 }
