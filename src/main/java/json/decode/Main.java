@@ -27,5 +27,8 @@ public class Main {
 
         second = mapper.readValue(secondJson, Parent.class);
         System.out.println(second.getClass());
+
+        Object obj = mapper.readValue(secondJson, Object.class);
+        System.out.println(obj.getClass());
     }
 }
