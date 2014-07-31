@@ -9,11 +9,13 @@ import com.fasterxml.jackson.annotation.*;
 @JsonIgnoreProperties({"field"})
 public class PropertyBean {
 
-    //@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
+    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
     public Parent value;
 
-    //@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
-    private transient Parent field;
+    private Parent value2;
+
+    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
+    private Parent field;
 
     public void setField(Parent field) {
         this.field = field;
@@ -23,7 +25,17 @@ public class PropertyBean {
         return this.field;
     }
 
-    public PropertyBean(Parent v) {
+    public void setValue2(Parent value2) {
+        this.value2 = value2;
+    }
+
+    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
+    public Parent getValue2() {
+        return value2;
+    }
+
+    @JsonCreator
+    public PropertyBean(@JsonProperty("value") Parent v) {
         value = v;
     }
 }

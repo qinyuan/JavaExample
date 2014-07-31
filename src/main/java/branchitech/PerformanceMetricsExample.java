@@ -1,18 +1,18 @@
 package branchitech;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import branchitech.metrics.ExceptionBean;
+import branchitech.metrics.MetricsBean;
 import branchitech.metrics.SimpleBean;
-import com.codahale.metrics.*;
+import com.branchitech.metrics.PerformanceMetrics;
 import com.codahale.metrics.Counter;
+import com.codahale.metrics.Metric;
+import com.codahale.metrics.TimeMeter;
+import com.codahale.metrics.Timer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.branchitech.metrics.PerformanceMetrics;
-
-import branchitech.metrics.MetricsBean;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class PerformanceMetricsExample {
 
@@ -76,10 +76,12 @@ public class PerformanceMetricsExample {
         try {
             bean.performanceMetrics();
         } catch (Exception e) {
+            //
         }
         try {
             bean.createByDefault();
         } catch (Exception e) {
+            //
         }
         bean.methodFromAbstractClass();
         bean.methodByAbstractClass();
@@ -92,16 +94,18 @@ public class PerformanceMetricsExample {
             try {
                 bean.sqlExceptionMetric();
             } catch (Exception e) {
+                //
             }
             try {
                 bean.ioExceptionMetric();
             } catch (Exception e) {
+                //
             }
             bean.normalMetric();
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
                 "bean.xml");
 
@@ -110,6 +114,12 @@ public class PerformanceMetricsExample {
         createMetricsBean(ctx, "metricsBean3");
         createExceptionBean(ctx, "exceptionBean1");
         createSimpleBean(ctx, "simpleBean1");
+
+        /*
+        MetricRegistry registry = ctx.getBean("metricRegistry", MetricRegistry.class);
+        GangliaReporterExample example = new GangliaReporterExample(registry);
+        example.run();
+        */
 
         printPerformanceMetrics();
         ctx.close();

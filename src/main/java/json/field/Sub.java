@@ -8,4 +8,8 @@ public class Sub implements Parent {
     public String getName() {
         return "sub";
     }
+
+    public void setName(String name) {
+
+    }
 }

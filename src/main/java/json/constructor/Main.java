@@ -16,5 +16,8 @@ public class Main {
 
         sub = mapper.readValue(json, Sub.class);
         System.out.println(sub.getClass());
+
+        NoField noField = new NoField();
+        mapper.writeValue(System.out, noField);
     }
 }

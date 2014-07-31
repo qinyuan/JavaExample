@@ -1,4 +1,4 @@
-package printf;
+package format;
 
 import java.text.DecimalFormat;
 
