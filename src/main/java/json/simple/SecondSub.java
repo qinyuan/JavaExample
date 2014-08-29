@@ -1,8 +1,8 @@
 package json.simple;
 
-/**
- * Created by qinyuan on 14-7-23.
- */
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
 public class SecondSub implements Parent {
     @Override
     public String getName() {

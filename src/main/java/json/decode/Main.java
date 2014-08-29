@@ -1,23 +1,22 @@
 package json.decode;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
 import json.simple.FirstSub;
 import json.simple.Parent;
 import json.simple.SecondSub;
 
-/**
- * Created by qinyuan on 14-7-23.
- */
 public class Main {
 
     public static void main(String[] args) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerSubtypes(new NamedType(FirstSub.class, "firstSub"));
+        mapper.registerSubtypes(new NamedType(SecondSub.class, "secondSub"));
 
-        Parent first = new FirstSub();
-        Parent second = new SecondSub();
+        Parent first, second;
 
-        String firstJson = mapper.writeValueAsString(first);
-        String secondJson = mapper.writeValueAsString(second);
+        String firstJson = "{\"@type\":\"firstSub\",\"name\":\"firstSub\"}";
+        String secondJson = "{\"@type\":\"secondSub\",\"name\":\"secondSub\"}";
 
         System.out.println(firstJson);
         System.out.println(secondJson);

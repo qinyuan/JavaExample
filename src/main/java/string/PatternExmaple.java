@@ -4,16 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Pattern example
  * Created by qinyuan on 14-7-29.
  */
 public class PatternExmaple {
 
     public static void main(String[] args) {
-        Pattern pattern = Pattern.compile("\\w\\d");
-        String str = "a5, a4 and a3 papper";
-        Matcher matcher = pattern.matcher(str);
-        while (matcher.find()) {
-            System.out.println(matcher.group());
-        }
+        Pattern pattern = Pattern.compile("");
+        Matcher matcher = pattern.matcher("Hello.World Me.Too");
+        System.out.println(matcher.replaceAll(""));
     }
 }
