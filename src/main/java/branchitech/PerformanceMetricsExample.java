@@ -4,10 +4,7 @@ import branchitech.metrics.ExceptionBean;
 import branchitech.metrics.MetricsBean;
 import branchitech.metrics.SimpleBean;
 import com.branchitech.metrics.PerformanceMetrics;
-import com.codahale.metrics.Counter;
-import com.codahale.metrics.Metric;
-import com.codahale.metrics.TimeMeter;
-import com.codahale.metrics.Timer;
+import com.codahale.metrics.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
