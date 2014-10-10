@@ -26,13 +26,18 @@
                               id="metricsReporterExcutor" size="2"/>
 
     <!-- 定时报告配置 -->
+    <!--
     <metrics:scheduled-reporter id="scheduledConsoleReporter"
                                 reporter="consoleReporter" executor="metricsReporterExcutor" period="5"
                                 auto-start="true"/>
+                                -->
     <metrics:scheduled-reporter id="scheduleGangliaReporter"
                                 reporter="gangliaReporter" executor="metricsReporterExcutor" period="5"
                                 auto-start="true"/>
 
+    <metrics:self-def-metric registry="metricRegistry" metric-bean="testBean2" value-method="getValue"/>
+
     <!-- 一个被监控的bean -->
     <bean id="testBean" class="branchitech.metrics.MetricsBean"/>
+    <bean id="selfDefMetricBean" class="java.lang.StringBuilder"/>
 </beans>
