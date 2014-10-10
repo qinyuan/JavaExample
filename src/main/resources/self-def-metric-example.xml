@@ -57,7 +57,7 @@
                              value-method="getStringBuilderValue"/>
 
     <!-- 这里没有定义id属性，程序会自动创建一个指标名称，该指标名称为branchitech.SelfDefMetricExample.getObjectValue，
-     指标值取决于selfDefMetricBean的getStringBuilderValue方法，指标在发送给gmond之后会被转换为string类型 -->
+     指标值取决于selfDefMetricBean的getObjectValue方法，指标在发送给gmond之后会被转换为string类型 -->
     <metrics:self-def-metric registry="metricRegistry" metric-bean="selfDefMetricBean" value-method="getObjectValue"/>
 
 </beans>
