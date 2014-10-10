@@ -35,9 +35,6 @@
                                 reporter="gangliaReporter" executor="metricsReporterExcutor" period="5"
                                 auto-start="true"/>
 
-    <metrics:self-def-metric registry="metricRegistry" metric-bean="testBean2" value-method="getValue"/>
-
     <!-- 一个被监控的bean -->
     <bean id="testBean" class="branchitech.metrics.MetricsBean"/>
-    <bean id="selfDefMetricBean" class="java.lang.StringBuilder"/>
 </beans>
