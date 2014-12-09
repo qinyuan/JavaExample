@@ -1,95 +1,12 @@
 package branchitech.metrics;
 
-import branchitech.metrics.bean.ExceptionBean;
-import branchitech.metrics.bean.MetricsBean;
 import branchitech.metrics.bean.SimpleBean;
-import com.branchitech.metrics.PerformanceMetrics;
-import com.codahale.metrics.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import static branchitech.metrics.PerformanceMetricsUtils.printPerformanceMetrics;
 
 public class PerformanceMetricsExample {
-
-    private static void print(Object obj) {
-        System.out.print(obj.toString());
-    }
-
-    private static void println(Object obj) {
-        System.out.println(obj.toString());
-    }
-
-    private static void printMetric(Metric value) {
-        if (value instanceof Counter) {
-            Counter counter = (Counter) value;
-            println(" getCount():" + counter.getCount());
-        } else if (value instanceof TimeMeter) {
-            TimeMeter timeMeter = (TimeMeter) value;
-            print(" getLastMarkTimestamp():" + timeMeter.getLastTimestamp() + ";");
-            print(" getMeanRate():" + timeMeter.getMeanRate() + ";");
-            print(" getOneMinuteRate():" + timeMeter.getOneMinuteRate());
-            println(" getCount():" + timeMeter.getCount());
-        } else if (value instanceof Timer) {
-            Timer timer = (Timer) value;
-            print(" getMeanRate():" + timer.getMeanRate() + ";");
-            print(" getOneMinuteRate():" + timer.getOneMinuteRate());
-            print(" getMin():" + timer.getSnapshot().getMin());
-            print(" getMax():" + timer.getSnapshot().getMax());
-            print(" getMean():" + timer.getSnapshot().getMean());
-            print(" getMedian():" + timer.getSnapshot().getMedian());
-            println(" getCount():" + timer.getCount());
-        } else {
-            println(value);
-        }
-    }
-
-    public static void printPerformanceMetrics() {
-        Map<String, PerformanceMetrics> metrics = PerformanceMetrics.metrics();
-        System.out.println("metrics size: " + metrics.size() + "\n");
-
-        for (Entry<String, PerformanceMetrics> entry : metrics.entrySet()) {
-            PerformanceMetrics pm = entry.getValue();
-            println("name: " + pm.getName());
-            println("count: " + pm.getCount());
-            println("allCount: " + pm.getAllCount());
-            println("metric detail: ");
-
-            for (Entry<String, Metric> metryEntry : pm.getMetrics().entrySet()) {
-                print(metryEntry.getKey() + " ");
-                printMetric(metryEntry.getValue());
-            }
-
-            println("");
-        }
-    }
-
-    private static void createMetricsBean(ApplicationContext ctx, String name) {
-        MetricsBean bean = ctx.getBean(name, MetricsBean.class);
-        bean.performanceMetrics();
-        bean.createByDefault();
-        bean.methodFromAbstractClass();
-        bean.methodByAbstractClass();
-        bean.methodFromInterface();
-    }
-
-    private static void createExceptionBean(ApplicationContext ctx, String name) {
-        ExceptionBean bean = ctx.getBean(name, ExceptionBean.class);
-        try {
-            bean.performanceMetrics();
-        } catch (Exception e) {
-            //
-        }
-        try {
-            bean.createByDefault();
-        } catch (Exception e) {
-            //
-        }
-        bean.methodFromAbstractClass();
-        bean.methodByAbstractClass();
-        bean.methodFromInterface();
-    }
 
     private static void createSimpleBean(ApplicationContext ctx, String name) {
         SimpleBean bean = ctx.getBean(name, SimpleBean.class);
@@ -110,26 +27,11 @@ public class PerformanceMetricsExample {
 
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
-                "bean.xml");
-
-        /*
-        createMetricsBean(ctx, "metricsBean1");
-        createMetricsBean(ctx, "metricsBean2");
-        createMetricsBean(ctx, "metricsBean3");
-        createExceptionBean(ctx, "exceptionBean1");
-        */
+                "perf-metrics.xml");
         createSimpleBean(ctx, "simpleBean1");
-
-        /*
-        MetricRegistry registry = ctx.getBean("metricRegistry", MetricRegistry.class);
-        GangliaReporterExample example = new GangliaReporterExample(registry);
-        example.run();
-        */
-
         while (true) {
             printPerformanceMetrics();
             Thread.sleep(3000);
         }
-        //ctx.close();
     }
 }

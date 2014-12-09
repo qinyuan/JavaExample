@@ -6,7 +6,7 @@ public class TestMyBeanPostProcessor {
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
-                "bean.xml");
+                "perf-metrics2.xml");
         ctx.getBean("testBean", TestBean.class);
         ctx.close();
     }

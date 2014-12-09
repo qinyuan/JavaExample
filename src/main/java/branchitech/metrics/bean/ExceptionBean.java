@@ -32,6 +32,5 @@ public class ExceptionBean extends AbstractMetricsBean {
 
     @SuppressWarnings("unused")
     private void ignoreMetric() {
-
     }
 }

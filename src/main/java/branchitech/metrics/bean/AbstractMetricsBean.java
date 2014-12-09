@@ -16,8 +16,6 @@ public abstract class AbstractMetricsBean implements IMetricsBean {
     public void methodByAbstractClass() {
     }
 
-    ;
-
     @PerformanceMetric
     @SuppressWarnings("unused")
     public abstract void methodFromAbstractClass();

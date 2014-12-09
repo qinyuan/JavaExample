@@ -15,11 +15,9 @@ public class MetricsBean extends AbstractMetricsBean {
      */
     @PerformanceMetric()
     public void performanceMetrics() {
-
     }
 
     public void createByDefault() {
-
     }
 
     @Override
@@ -28,6 +26,5 @@ public class MetricsBean extends AbstractMetricsBean {
 
     @SuppressWarnings("unused")
     private void ignoreMetric() {
-
     }
 }

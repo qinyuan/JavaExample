@@ -53,7 +53,7 @@ public class GangliaReporterExample2 {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(
-                "bean.xml");
+                "perf-metrics2.xml");
         ExceptionBean bean = createExceptionBean(ctx);
         MetricRegistry registry = getRegistry(ctx);
         GangliaReporter reporter = getReporter(registry);

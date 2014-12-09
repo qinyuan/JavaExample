@@ -17,7 +17,7 @@ public class SelfDefMetricExample2 {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(
-                "bean2.xml");
+                "self-def-metric-example2.xml");
 
         // 这里创建了一个自定义的指标，该指标永远返回字符串HelloWorld
         Gauge<String> strGauge = new Gauge<String>() {
@@ -38,7 +38,8 @@ public class SelfDefMetricExample2 {
 
         /*
          * 获取指标注册库bean，这里的beanId对应的于spring配置文件中metrics:registry元素的id。
-         * 在本例的bean2.xml这个配置文件中，有这么一行配置：<metrics:registry id="metricRegistry"/>。
+         * 在本例的self-def-metrics-example2.xml这个配置文件中，有这么一行配置：
+         * <metrics:registry id="metricRegistry"/>。
          * 所以这里将"metricRegistry"作为getBean方法的第一个参数
          */
         MetricRegistry registry = ctx.getBean("metricRegistry", MetricRegistry.class);
