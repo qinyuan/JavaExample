@@ -10,9 +10,9 @@
     <metrics:registry id="metricRegistry"/>
     <metrics:annotation-driven proxy-target-class="true" registry="metricRegistry"/>
 
-    <bean id="metricsBean1" class="branchitech.metrics.MetricsBean"/>
-    <bean id="metricsBean2" class="branchitech.metrics.MetricsBean"/>
-    <bean id="metricsBean3" class="branchitech.metrics.MetricsBean"/>
-    <bean id="exceptionBean1" class="branchitech.metrics.ExceptionBean"/>
-    <bean id="simpleBean1" class="branchitech.metrics.SimpleBean"/>
+    <bean id="metricsBean1" class="branchitech.metrics.bean.MetricsBean"/>
+    <bean id="metricsBean2" class="branchitech.metrics.bean.MetricsBean"/>
+    <bean id="metricsBean3" class="branchitech.metrics.bean.MetricsBean"/>
+    <bean id="exceptionBean1" class="branchitech.metrics.bean.ExceptionBean"/>
+    <bean id="simpleBean1" class="branchitech.metrics.bean.SimpleBean"/>
 </beans>

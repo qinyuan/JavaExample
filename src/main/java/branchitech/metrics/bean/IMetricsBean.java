@@ -1,4 +1,4 @@
-package branchitech.metrics;
+package branchitech.metrics.bean;
 
 import com.branchitech.metrics.annotation.PerformanceMetric;
 

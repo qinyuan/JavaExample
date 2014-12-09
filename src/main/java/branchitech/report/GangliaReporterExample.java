@@ -1,4 +1,4 @@
-package branchitech;
+package branchitech.report;
 
 import com.branchitech.metrics.ganglia.GMetricBuilder;
 import com.branchitech.metrics.ganglia.GangliaReporter;

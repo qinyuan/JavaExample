@@ -1,4 +1,4 @@
-package branchitech;
+package branchitech.metrics;
 
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
@@ -8,9 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.Random;
 
 /**
+ * 这里是手工创建自定义指标的一个例子
  * Created by qinyuan on 9/28/14.
  */
-public class ReportInBackground {
+public class SelfDefMetricExample2 {
 
     private static Random rand = new Random();
 

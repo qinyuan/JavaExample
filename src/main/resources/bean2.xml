@@ -36,5 +36,5 @@
                                 auto-start="true"/>
 
     <!-- 一个被监控的bean -->
-    <bean id="testBean" class="branchitech.metrics.MetricsBean"/>
+    <bean id="testBean" class="branchitech.metrics.bean.MetricsBean"/>
 </beans>

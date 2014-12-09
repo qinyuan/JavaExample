@@ -1,8 +1,8 @@
-package branchitech;
+package branchitech.metrics;
 
-import branchitech.metrics.ExceptionBean;
-import branchitech.metrics.MetricsBean;
-import branchitech.metrics.SimpleBean;
+import branchitech.metrics.bean.ExceptionBean;
+import branchitech.metrics.bean.MetricsBean;
+import branchitech.metrics.bean.SimpleBean;
 import com.branchitech.metrics.PerformanceMetrics;
 import com.codahale.metrics.*;
 import org.springframework.context.ApplicationContext;

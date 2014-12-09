@@ -1,12 +1,10 @@
-package branchitech;
+package branchitech.report;
 
-import branchitech.metrics.ExceptionBean;
-import com.branchitech.metrics.PerformanceMetrics;
+import branchitech.metrics.bean.ExceptionBean;
 import com.branchitech.metrics.ganglia.GMetricBuilder;
 import com.branchitech.metrics.ganglia.GangliaReporter;
 import com.branchitech.metrics.ganglia.IGMetric;
 import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.TimeMeter;
 import info.ganglia.gmetric4j.gmetric.GMetric;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

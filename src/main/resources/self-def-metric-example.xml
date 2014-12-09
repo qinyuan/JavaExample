@@ -34,7 +34,7 @@
                                 auto-start="true"/>
 
     <!-- 自定义指标配置 -->
-    <bean id="selfDefMetricBean" class="branchitech.SelfDefMetricExample"/>
+    <bean id="selfDefMetricBean" class="branchitech.metrics.SelfDefMetricExample"/>
 
     <!-- 该自定义指标将以selfDefMetric1这一名称汇报，指标值取决于selfDefMetricBean的getStringValue方法，
      指标在发送给gmond后会被转换为string类型 -->
