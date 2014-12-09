@@ -29,10 +29,16 @@ public class PerformanceMetricsExample {
             TimeMeter timeMeter = (TimeMeter) value;
             print(" getLastMarkTimestamp():" + timeMeter.getLastTimestamp() + ";");
             print(" getMeanRate():" + timeMeter.getMeanRate() + ";");
+            print(" getOneMinuteRate():" + timeMeter.getOneMinuteRate());
             println(" getCount():" + timeMeter.getCount());
         } else if (value instanceof Timer) {
             Timer timer = (Timer) value;
             print(" getMeanRate():" + timer.getMeanRate() + ";");
+            print(" getOneMinuteRate():" + timer.getOneMinuteRate());
+            print(" getMin():" + timer.getSnapshot().getMin());
+            print(" getMax():" + timer.getSnapshot().getMax());
+            print(" getMean():" + timer.getSnapshot().getMean());
+            print(" getMedian():" + timer.getSnapshot().getMedian());
             println(" getCount():" + timer.getCount());
         } else {
             println(value);
@@ -106,10 +112,12 @@ public class PerformanceMetricsExample {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
                 "bean.xml");
 
+        /*
         createMetricsBean(ctx, "metricsBean1");
         createMetricsBean(ctx, "metricsBean2");
         createMetricsBean(ctx, "metricsBean3");
         createExceptionBean(ctx, "exceptionBean1");
+        */
         createSimpleBean(ctx, "simpleBean1");
 
         /*
@@ -118,7 +126,10 @@ public class PerformanceMetricsExample {
         example.run();
         */
 
-        printPerformanceMetrics();
-        ctx.close();
+        while (true) {
+            printPerformanceMetrics();
+            Thread.sleep(3000);
+        }
+        //ctx.close();
     }
 }
