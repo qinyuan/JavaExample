@@ -9,9 +9,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.InputStream;
 
-/**
- * Created by qinyuan on 14-7-16.
- */
 public class ResourceExample {
 
     public static void main(String[] args) throws Exception {
