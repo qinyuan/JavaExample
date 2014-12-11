@@ -1,6 +1,7 @@
 package spring.aop.pointcut;
 
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
+import org.springframework.aop.support.AopUtils;
 
 public class AspectjExpressionPointcutExample {
     static AspectJExpressionPointcut pointcut;
@@ -37,6 +38,7 @@ public class AspectjExpressionPointcutExample {
         testMethodMethodMatch("sayHello", TestBean.class);
 
         System.out.println();
-        System.out.println(pointcut.getClassFilter().matches(String.class));
+        System.out.println(AopUtils.canApply(pointcut, String.class));
+        System.out.println(AopUtils.canApply(pointcut, TestBean.class));
     }
 }
