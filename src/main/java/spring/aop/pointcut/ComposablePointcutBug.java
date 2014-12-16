@@ -16,17 +16,17 @@ public class ComposablePointcutBug {
     public static void main(String[] args) throws Exception {
         AspectJExpressionPointcut p = new AspectJExpressionPointcut();
         p.setExpression("execution(* java.lang.Integer.*(..))");
-        ComposablePointcut pointcut = new ComposablePointcut((Pointcut) p);
-        ComposablePointcut pointcut2 = new ComposablePointcut(pointcut);
+        ComposablePointcut son = new ComposablePointcut((Pointcut) p);
+        ComposablePointcut parent = new ComposablePointcut(son);
 
         p = new AspectJExpressionPointcut();
         p.setExpression("execution(* java.lang.String.*(..))");
-        pointcut.union((Pointcut) p);
+        son.union((Pointcut) p);
 
         Method method = String.class.getMethod("toString");
-        print(pointcut.getMethodMatcher().matches(method, String.class));
-        print(AopUtils.canApply(pointcut, String.class));
-        print(pointcut2.getMethodMatcher().matches(method, String.class));
-        print(AopUtils.canApply(pointcut2, String.class));
+        print(son.getMethodMatcher().matches(method, String.class));
+        //print(AopUtils.canApply(son, String.class));
+        print(parent.getMethodMatcher().matches(method, String.class));
+        //print(AopUtils.canApply(parent, String.class));
     }
 }
