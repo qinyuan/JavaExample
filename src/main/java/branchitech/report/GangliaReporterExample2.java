@@ -14,22 +14,11 @@ import java.io.IOException;
 public class GangliaReporterExample2 {
 
     private static IGMetric getIGMetric() throws IOException {
-        final String host = "239.2.11.72";
+        final String host = "239.2.11.71";
         final int port = 8649;
         final int ttl = 1;
         GMetric gMetric = new GMetric(host, port, GMetric.UDPAddressingMode.MULTICAST, ttl);
         return GMetricBuilder.build(gMetric);
-    }
-
-    //private final static TimeMeter timeMeter = new TimeMeter();
-
-    private static MetricRegistry getRegistry(ApplicationContext ctx) {
-        return ctx.getBean("metricRegistry", MetricRegistry.class);
-        /*
-        MetricRegistry registry = new MetricRegistry();
-        registry.register("testTimeMeter", timeMeter);
-        return registry;
-        */
     }
 
     private static GangliaReporter getReporter(MetricRegistry registry) throws IOException {
@@ -40,37 +29,43 @@ public class GangliaReporterExample2 {
         return builder.build();
     }
 
-    private static ExceptionBean createExceptionBean(ApplicationContext ctx) {
-        return ctx.getBean("exceptionBean1", ExceptionBean.class);
-    }
-
     private static void execExceptionBean(ExceptionBean bean) {
         try {
             bean.performanceMetrics();
         } catch (Exception e) {
+            // nothing to do
         }
+    }
+
+    private static void reportInBackground(final GangliaReporter reporter) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    reporter.report(); // report every 15 seconds
+                    try {
+                        Thread.sleep(15000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(
                 "perf-metrics2.xml");
-        ExceptionBean bean = createExceptionBean(ctx);
-        MetricRegistry registry = getRegistry(ctx);
+        ExceptionBean bean = ctx.getBean("exceptionBean1", ExceptionBean.class);
+        MetricRegistry registry = ctx.getBean("metricRegistry", MetricRegistry.class);
         GangliaReporter reporter = getReporter(registry);
+        reportInBackground(reporter);
 
-        int i = 0;
-        while (true) {
-            if (++i == 6) {
-                try {
-                    bean.performanceMetrics();
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                i = 0;
-            }
-            reporter.report();
-            //Thread.sleep(1000 * 60 * 2);
-            Thread.sleep(1000);
-        }
+        bean.methodFromAbstractClass();
+        bean.methodFromAbstractClass();
+        bean.methodFromAbstractClass();
+        bean.methodFromAbstractClass();
+        bean.methodFromAbstractClass();
+        bean.blockMethod();
     }
 }

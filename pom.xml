@@ -8,6 +8,7 @@
 
     <properties>
         <spring.version>3.2.4.RELEASE</spring.version>
+        <metrics.version>0.6-SNAPSHOT</metrics.version>
     </properties>
 
     <dependencies>
@@ -45,13 +46,18 @@
         <!-- metrics -->
         <dependency>
             <groupId>com.branchitech.metrics</groupId>
+            <artifactId>branchitech-metrics-core</artifactId>
+            <version>${metrics.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.branchitech.metrics</groupId>
             <artifactId>branchitech-metrics-ganglia</artifactId>
-            <version>0.5-SNAPSHOT</version>
+            <version>${metrics.version}</version>
         </dependency>
         <dependency>
             <groupId>com.branchitech.metrics</groupId>
             <artifactId>branchitech-metrics-spring</artifactId>
-            <version>0.5-SNAPSHOT</version>
+            <version>${metrics.version}</version>
         </dependency>
         <dependency>
             <groupId>com.codahale.metrics</groupId>
