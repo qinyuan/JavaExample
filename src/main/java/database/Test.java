@@ -1,13 +1,12 @@
 package database;
 
-/**
- * Created by qinyuan on 15-1-27.
- */
+import java.sql.Clob;
+
 public class Test {
 
     private Integer testId;
     private String testName;
-    private String testXml;
+    private Object testXml;
 
     public Integer getTestId() {
         return testId;
@@ -17,7 +16,7 @@ public class Test {
         return testName;
     }
 
-    public void setTestXml(String testXml) {
+    public void setTestXml(Object testXml) {
         this.testXml = testXml;
     }
 
@@ -29,7 +28,7 @@ public class Test {
         this.testName = testName;
     }
 
-    public String getTestXml() {
+    public Object getTestXml() {
         return testXml;
     }
 }

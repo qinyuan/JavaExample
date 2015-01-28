@@ -2,27 +2,22 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
         "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
-<!--
-<sqlMap namespace="person">
-<select id="getPerson" resultClass="org.frank1234.ibatis.helloworld.Person">
-    select id,name,sex,age from person where id=#value#
-</select>
-<insert id="savePerson" parameterClass="org.frank1234.ibatis.helloworld.Person">
-    insert into person(name,sex,age) values(#name#,#sex#,#age#)
-</insert>
-<update id="updatePerson" parameterClass="org.frank1234.ibatis.helloworld.Person">
-    update person set name=#name#,sex=#sex#,age=#age# where id=#id#
-</update>
-<delete id="deletePerson" parameterClass="org.frank1234.ibatis.helloworld.Person">
-    delete from person where id=#id#
-</delete>
-</sqlMap>
--->
 <sqlMap namespace="test">
     <select id="getTest" resultClass="database.Test">
-        select test_id as testID,test_name as testName,extract(test_xml, '//names').getClobVal() as testXml from qinyuan_test where test_id=#value#
+        select test_id as testID,test_name as testName,extract(test_xml, '//names').getClobVal() as testXml from
+        qinyuan_test where test_id=#value#
     </select>
-     <select id="getAll" resultClass="database.Test">
-        select test_id as testID,test_name as testName,extract(test_xml, '//names').getClobVal() as testXml from qinyuan_test
+    <select id="getAll" resultClass="database.Test">
+        select test_id as testID,test_name as testName,extract(test_xml, '//names').getClobVal() as testXml from
+        qinyuan_test
     </select>
+    <insert id="saveTest" parameterClass="database.Test">
+        insert into qinyuan_test(test_id,test_name,test_xml) values(#testId#,#testName#,#testXml#)
+    </insert>
+    <update id="updateTest" parameterClass="database.Test">
+        update qinyuan_test set test_id=#testId#,test_name=#testName#,test_xml=#testXml# where test_id=#testId#
+    </update>
+    <delete id="deleteTest" parameterClass="database.Test">
+        delete from qinyuan_test where test_id=#testId#
+    </delete>
 </sqlMap>

@@ -1,12 +1,11 @@
 package database;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import oracle.sql.CLOB;
+import org.apache.commons.io.IOUtils;
 
 import java.util.List;
 
-/**
- * Created by qinyuan on 15-1-27.
- */
 public class TestExample {
 
     public static void main(String[] args) throws Exception {
@@ -19,7 +18,10 @@ public class TestExample {
 
         System.out.println(test.getTestId());
         System.out.println(test.getTestName());
-        System.out.println(test.getTestXml());
-        System.out.println(test.getTestXml().length());
+        CLOB testXml = (CLOB)test.getTestXml();
+        String clobString = IOUtils.toString(testXml.getCharacterStream());
+        System.out.println(clobString.length());
+
+        //System.out.println(test.getTestXml().length());
     }
 }
