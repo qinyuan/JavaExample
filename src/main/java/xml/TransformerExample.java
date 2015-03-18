@@ -24,8 +24,8 @@ public class TransformerExample {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         Result outputTarget = new StreamResult(out);
         transformer.transform(xmlSource, outputTarget);
-        String reslut = new String(out.toByteArray());
-        return DocumentHelper.parseText(reslut);
+        String result = new String(out.toByteArray());
+        return DocumentHelper.parseText(result);
     }
 
     public static void main(String[] args) throws Exception {

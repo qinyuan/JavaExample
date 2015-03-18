@@ -4,9 +4,9 @@ import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class TestGauges {
     /**
@@ -22,6 +22,7 @@ public class TestGauges {
             metrics).build();
 
     public static void main(String[] args) throws InterruptedException {
+        /*
         reporter.start(3, TimeUnit.SECONDS);
 
         // 实例化一个Gauge
@@ -41,5 +42,17 @@ public class TestGauges {
             list.add("a");
             Thread.sleep(1000);
         }
+        */
+        final List<Integer> list = new ArrayList<Integer>();
+        Gauge<Integer> gauge = new Gauge<Integer>() {
+            @Override
+            public Integer getValue() {
+                return list.size();
+            }
+        };
+
+        System.out.println("为列表增加元素前gauge的值：" + gauge.getValue());
+        list.add(1);
+        System.out.println("为列表增加元素后gauge的值：" + gauge.getValue());
     }
 }

@@ -31,10 +31,22 @@ public class TestCounter {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
+        /*
 		reporter.start(3, TimeUnit.SECONDS);
 		for (int i = 0; i < 20; i++) {
 			add("1");
 			Thread.sleep(1000);
 		}
-	}
+		*/
+        Counter counter = new Counter();
+        System.out.println("当前计数：" + counter.getCount());
+        counter.inc();
+        System.out.println("执行inc()后的计数：" + counter.getCount());
+        counter.dec();
+        System.out.println("执行dec()后的计数：" + counter.getCount());
+        counter.inc(10);
+        System.out.println("执行inc(10)后的计数：" + counter.getCount());
+        counter.dec(5);
+        System.out.println("执行dec(5)后的计数：" + counter.getCount());
+    }
 }
