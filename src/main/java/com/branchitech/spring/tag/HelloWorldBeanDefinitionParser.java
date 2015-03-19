@@ -19,6 +19,7 @@ public class HelloWorldBeanDefinitionParser implements BeanDefinitionParser {
         MutablePropertyValues propertyValues = beanDefinition.getPropertyValues();
         propertyValues.addPropertyValue("serial", serial);
         propertyValues.addPropertyValue("name", name);
+        parserContext.getRegistry().registerBeanDefinition(id, beanDefinition);
 
         return null;
     }

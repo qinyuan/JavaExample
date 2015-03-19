@@ -2,12 +2,9 @@ package spring.aop.pointcut;
 
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
-import org.springframework.aop.support.AopUtils;
 import org.springframework.aop.support.ComposablePointcut;
 
 import java.lang.reflect.Method;
-
-import static common.PrintUtils.print;
 
 public class ComposablePointcutBug {
     public void test() {
@@ -24,9 +21,9 @@ public class ComposablePointcutBug {
         son.union((Pointcut) p);
 
         Method method = String.class.getMethod("toString");
-        print(son.getMethodMatcher().matches(method, String.class));
+        System.out.println(son.getMethodMatcher().matches(method, String.class));
         //print(AopUtils.canApply(son, String.class));
-        print(parent.getMethodMatcher().matches(method, String.class));
+        System.out.println(parent.getMethodMatcher().matches(method, String.class));
         //print(AopUtils.canApply(parent, String.class));
     }
 }

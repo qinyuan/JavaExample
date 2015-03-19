@@ -7,8 +7,6 @@ import org.springframework.aop.support.ComposablePointcut;
 
 import java.lang.reflect.Method;
 
-import static common.PrintUtils.print;
-
 public class ComposablePointcutExample {
 
     public void test() {
@@ -22,17 +20,17 @@ public class ComposablePointcutExample {
         p.setExpression("execution(* spring.aop.pointcut.*.hello(..))");
         ComposablePointcut pointcut = new ComposablePointcut((Pointcut) p);
 
-        print(p.getMethodMatcher().matches(method, clazz));
-        print(pointcut.getMethodMatcher().matches(method, clazz));
-        print(AopUtils.canApply(pointcut, ComposablePointcutExample.class));
-        print();
+        System.out.println(p.getMethodMatcher().matches(method, clazz));
+        System.out.println(pointcut.getMethodMatcher().matches(method, clazz));
+        System.out.println(AopUtils.canApply(pointcut, ComposablePointcutExample.class));
+        System.out.println();
 
         p = new AspectJExpressionPointcut();
         p.setExpression("execution(* spring.aop.pointcut.*.test(..))");
         pointcut.union((Pointcut) p);
 
-        print(p.getMethodMatcher().matches(method, clazz));
-        print(pointcut.getMethodMatcher().matches(method, clazz));
-        print(AopUtils.canApply(pointcut, ComposablePointcutExample.class));
+        System.out.println(p.getMethodMatcher().matches(method, clazz));
+        System.out.println(pointcut.getMethodMatcher().matches(method, clazz));
+        System.out.println(AopUtils.canApply(pointcut, ComposablePointcutExample.class));
     }
 }
