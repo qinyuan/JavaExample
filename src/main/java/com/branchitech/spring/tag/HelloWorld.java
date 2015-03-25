@@ -26,7 +26,7 @@ public class HelloWorld {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("helloWorld.xml");
         HelloWorld bean = context.getBean("testBean", HelloWorld.class);
-        System.out.println(bean.getSerial());
-        System.out.println(bean.getName());
+        System.out.println("testBean的serial属性：" + bean.getSerial());
+        System.out.println("testBean的name属性：" + bean.getName());
     }
 }
